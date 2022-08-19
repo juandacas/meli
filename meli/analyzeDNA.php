@@ -4,20 +4,15 @@ error_reporting(0);
 
 class AnalizeDNA {
 
-    public function size($array) {
+    public function letters($array) {
         $correct = 1; 
-        $matrizCorrect = $this->matrizCuadrada($array);
-        if ($matrizCorrect == 0) {
-            $correct = 0;
-            return $correct;
-        }
-        $sizeTotal = count($array);
-        $sizeArray = strlen($array[0]);               
-        
-        foreach($array as $arr) {
-            if (strlen($arr)!=$sizeArray) {
-                $correct = 0;
-            }
+        $notPerm = array("B","D","E","F","H","I","J","K","L","M","N","O","P","Q","R","S","U","V","W","X","Y","Z","1","2","3","4","5","6","7","8","9","0");
+        for ($i=0; $i < count($array); $i++) { 
+            for ($j=0; $j < count($notPerm); $j++) { 
+                if (strpos(strtoupper($array[$i]), $notPerm[$j])) {
+                    return $correct = 0;
+                }
+            }            
         }
         return $correct;
     }
@@ -50,9 +45,10 @@ class AnalizeDNA {
     }
 
     public function verificar($dna) {
-        $correctSize = $this->size($dna);
+        $correctSize = $this->matrizCuadrada($dna);
+        $correctLetters = $this->letters($dna);
         $result = false;
-        if ($correctSize == 0) { //matriz NxN?
+        if ($correctSize == 0 || $correctLetters == 0) { //matriz NxN? letras permitidas?
             return $result;
         }
         $size = count($dna);

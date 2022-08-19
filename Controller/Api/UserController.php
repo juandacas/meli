@@ -62,7 +62,7 @@ class UserController extends BaseController
             $almacena = $userModel->saveDNA(json_encode($dna),$analizeResult); 
             $responseData = json_encode($analizeResult);
         }else{
-            $this->sendOutput(json_encode(array('error' => 'Method not supported')), 
+            $this->sendOutput(json_encode(array('error' => 'Data Error')), 
                 array('Content-Type: application/json', 'HTTP/1.1 403 Forbiden')
             );
         }
@@ -73,7 +73,7 @@ class UserController extends BaseController
                 array('Content-Type: application/json', 'HTTP/1.1 200 OK')
             );
         } else{
-            $this->sendOutput(json_encode(array('error' => 'Method not supported')), 
+            $this->sendOutput(json_encode(array('error' => 'Data Error')), 
                 array('Content-Type: application/json', 'HTTP/1.1 403 Forbiden')
             );
         } 
